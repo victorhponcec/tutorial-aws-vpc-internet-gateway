@@ -2,6 +2,8 @@
 
 The purpose of this lab is to create a basic VPC using Terraform. The infrastructure will consist of a VPC, a public subnet, an EC2 instance and an Internet Gateway attached to the VPC which will provide internet connectivity to our public subnet and therefore to our EC2 instance. We’ll also configure all necessary resources so you can SSH your instance. 
 
+![alt text](Diagrams_Tutorials-VPC-IGW.drawio.png)
+
 # Set up the AWS Provider
 In order to create this infrastructure, we are going to use the AWS, Local and TLS providers. 
 
@@ -33,7 +35,7 @@ provider "aws" {
 
 # Create a VPC and Subnet
 
-We are going to create a custom VPC and an Availability Zone to host our infrastructure.
+We are going to create a custom VPC and public subnet to host our infrastructure.
 
 ```
 #VPC 
@@ -178,7 +180,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_ssh_all" {
 
 ```
 # EC2 Instance
-We can now create and place our EC2 instance in the public zone. We need to associate to the instance the two security groups just created and the key pair. 
+We can now create and place our EC2 instance in the public subnet. We need to associate to the instance the two security groups just created and the key pair. 
 
 ```
 #EC2 Instances
